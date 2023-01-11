@@ -63,8 +63,8 @@ class NormalForce extends Force {
     drawForce() {
         let lx1 = this.object.position.x;
         let ly1 = this.object.position.y;
-        let lx2 = lx1 + this.mag / 2 * sin(this.dir + PI);
-        let ly2 = ly1 + this.mag / 2 * cos(this.dir + PI);
+        let lx2 = lx1 + this.mag * sin(this.dir + PI);
+        let ly2 = ly1 + this.mag * cos(this.dir + PI);
 
         stroke(this.colour);
         fill(this.colour);

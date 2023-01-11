@@ -7,7 +7,7 @@ class Ring {
         this.size = size;
 
         // Radius of Ring in Meters.
-        this.radius = size / 2 / 10;
+        this.radius = size / 2 / 20;
 
     }
 

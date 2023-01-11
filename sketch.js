@@ -1,4 +1,4 @@
-let running;
+let running = true;
 let ring;
 let mass;
 let centerX;
@@ -88,37 +88,12 @@ function draw() {
 	ring.drawRing();
 	mass.drawPoint();
 	
-	gravity.updateMagnitude();
 	gravity.drawForce();
-
-	friction.updateDir();
-	friction.updateMagnitude();
 	friction.drawForce();
-	
-	normal.updateMagnitude();
-	normal.updateDir();
 	normal.drawForce();
 
-
-	// stroke(0);
-	// strokeWeight(0.5);
-	// textSize(15);
-	// fill(0);
-
-	document.getElementById("Radius").innerHTML = `Ring's Radius: ${round(ring.radius, 2)}m`;
-	document.getElementById("angVel").innerHTML = `Angular Velocity: ${round(mass.angularVelocity * 60, 2)} rad/s`
-	document.getElementById("vel").innerHTML = `Velocity: ${round(mass.velocity * 60, 2)} m/s`
-	document.getElementById("mass").innerHTML = `Mass: ${mass.objectMass} kg`;
-
-	//text(`Ring Radius: ${ring.radius} meters`, centerX - ring.size, 75);
-	//text(`Angular Velocity: ${round(mass.angularVelocity * 60, 2)} radian(s) per second`, centerX - ring.size, 25);
-	//text(`Velocity: ${round(mass.velocity * 60, 2)} meter(s) per second`, centerX - ring.size, 50);
-	//text("Angular Velocity (rad/s):", centerX + 0.6 * ring.size, centerY - 0.26 * ring.size);
-	//text("Velocity (m/s):", centerX + 0.6 * ring.size, centerY - 0.12 * ring.size);
-	//text(`Mass: ${mass.objectMass} kg`, centerX + 0.6 * ring.size, centerY)
 	let minSpeedElement = document.getElementById("minimumSpeed");
 	let maxSpeedElement = document.getElementById("maximumSpeed");
-	
 	if (highlight) {
 		minSpeedElement.style.color = "red";
 		maxSpeedElement.style.color = "red";
@@ -129,38 +104,81 @@ function draw() {
 	minSpeedElement.innerHTML = `Minimum Speed Required: ${round(mass.minimumVel, 2)} m/s = ${round(mass.minimumAngVel, 2)} rad/s`;
 	maxSpeedElement.innerHTML = `Speed Capped at ${maximumSpeed} m/s = ${maximumAngSpeed} rad/s`;
 
-	let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
-	document.getElementById("Centripetal").innerHTML = `Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`;
-	document.getElementById("angle").innerHTML = `Angle Theta: ${round(normal.dir, 2)}`
+	// stroke(0);
+	// strokeWeight(0.5);
+	// textSize(15);
+	// fill(0);
+	if (running) {
+		normal.updateMagnitude();
+		normal.updateDir();
 
-	let magnitudes;
-	if (showMagnitudes) {
-		magnitudes = [round(gravity.mag, 2), round(normal.mag, 2), round(friction.mag, 2)];
-	} else magnitudes = ["", "", ""];
+		gravity.updateMagnitude();
 
-	document.getElementById("Weight").innerHTML = `Weight (N): ${magnitudes[0]}`;
-	document.getElementById("Normal").innerHTML = `Normal Force (N): ${magnitudes[1]}`;
-	document.getElementById("Friction").innerHTML = `Frictional Force (N): ${magnitudes[2]}`;
+		friction.updateDir();
+		friction.updateMagnitude();
 
-	// textSize(20);
-	// fill(gravity.colour);
-	// text(`Weight: ${magnitudes[0]} N`, centerX - ring.size, 200);
-	// fill(normal.colour);
-	// text(`Normal Force: ${magnitudes[1]} N`, centerX - ring.size, 240);
-	// fill(friction.colour);
-	// text(`Frictional Force: ${magnitudes[2]} N`, centerX - ring.size, 280);
+		document.getElementById("Radius").innerHTML = `Ring's Radius: ${round(ring.radius, 2)}m`;
+		document.getElementById("angVel").innerHTML = `Angular Velocity: ${round(mass.angularVelocity * 60, 2)} rad/s`
+		document.getElementById("vel").innerHTML = `Velocity: ${round(mass.velocity * 60, 2)} m/s`
+		document.getElementById("mass").innerHTML = `Mass: ${mass.objectMass} kg`;
 
-	// fill('black')
-	// let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
-	// text(`Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`, centerX - ring.size, 320);
-
-	// text(`Angle Theta: ${round(normal.dir, 2)}`, centerX - ring.size, 360);
+		//text(`Ring Radius: ${ring.radius} meters`, centerX - ring.size, 75);
+		//text(`Angular Velocity: ${round(mass.angularVelocity * 60, 2)} radian(s) per second`, centerX - ring.size, 25);
+		//text(`Velocity: ${round(mass.velocity * 60, 2)} meter(s) per second`, centerX - ring.size, 50);
+		//text("Angular Velocity (rad/s):", centerX + 0.6 * ring.size, centerY - 0.26 * ring.size);
+		//text("Velocity (m/s):", centerX + 0.6 * ring.size, centerY - 0.12 * ring.size);
+		//text(`Mass: ${mass.objectMass} kg`, centerX + 0.6 * ring.size, centerY)
+		
+		
 
 
-	mass.theta += mass.angularVelocity;
-	if (mass.theta >= TWO_PI) mass.theta -= TWO_PI;
-	if (mass.theta < 0) mass.theta += TWO_PI; 
-	mass.updatePosition();
+		let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
+		document.getElementById("Centripetal").innerHTML = `Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`;
+		document.getElementById("angle").innerHTML = `Angle Theta: ${round(normal.dir, 2)}`
+
+		let magnitudes;
+		if (showMagnitudes) {
+			magnitudes = [round(gravity.mag, 2), round(normal.mag, 2), round(friction.mag, 2)];
+		} else magnitudes = ["", "", ""];
+
+		document.getElementById("Weight").innerHTML = `Weight (N): ${magnitudes[0]}`;
+		document.getElementById("Normal").innerHTML = `Normal Force (N): ${magnitudes[1]}`;
+		document.getElementById("Friction").innerHTML = `Frictional Force (N): ${magnitudes[2]}`;
+
+		
+
+		// textSize(20);
+		// fill(gravity.colour);
+		// text(`Weight: ${magnitudes[0]} N`, centerX - ring.size, 200);
+		// fill(normal.colour);
+		// text(`Normal Force: ${magnitudes[1]} N`, centerX - ring.size, 240);
+		// fill(friction.colour);
+		// text(`Frictional Force: ${magnitudes[2]} N`, centerX - ring.size, 280);
+
+		// fill('black')
+		// let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
+		// text(`Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`, centerX - ring.size, 320);
+
+		// text(`Angle Theta: ${round(normal.dir, 2)}`, centerX - ring.size, 360);
+
+
+		mass.theta += mass.angularVelocity;
+		if (mass.theta >= TWO_PI) mass.theta -= TWO_PI;
+		if (mass.theta < 0) mass.theta += TWO_PI; 
+		mass.updatePosition();
+		}
+
+	if (!running) {
+		fill(0);
+		stroke(0);
+		strokeWeight(1);
+		drawingContext.setLineDash([5, 15]);
+		line(ring.x,ring.y,mass.position.x,mass.position.y);
+		line(ring.x, ring.y, ring.x, ring.y + ring.size / 2);
+		drawingContext.setLineDash([]);
+		strokeWeight(0.2);
+		text(`θ=${round(normal.dir, 2)}`, ring.x + 20, ring.y);
+	}
 
 	//mass.objectMass = inputs.massSlider.value();
 	//mass.size = mass.objectMass * 5;
@@ -173,12 +191,12 @@ function windowResized() {
 
 function playPause() {
 	if (running) {
-		noLoop();
 		running = false;
 		document.getElementsByClassName("PlayPauseButton")[0].innerHTML = "Play";
+
 	} else {
-		loop();
 		running = true;
+
 		document.getElementsByClassName("PlayPauseButton")[0].innerHTML = "Pause";
 	}
 }
