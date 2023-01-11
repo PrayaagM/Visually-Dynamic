@@ -77,6 +77,7 @@ body {
     text-align: center;
 }
 
+
 #title {
     animation: fadeBackground 7s;
     animation-fill-mode: forwards;

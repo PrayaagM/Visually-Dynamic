@@ -32,7 +32,7 @@ let maximumAngSpeed = 20;
 let maximumSpeed = 100;
 
 // Initial Mass in Kilograms
-let initialMass = 10;
+let initialMass = 5;
 
 // Force Vectors
 let gravity;
@@ -104,6 +104,11 @@ function draw() {
 	minSpeedElement.innerHTML = `Minimum Speed Required: ${round(mass.minimumVel, 2)} m/s = ${round(mass.minimumAngVel, 2)} rad/s`;
 	maxSpeedElement.innerHTML = `Speed Capped at ${maximumSpeed} m/s = ${maximumAngSpeed} rad/s`;
 
+	let value = document.getElementById("massSlider").value;
+	mass.objectMass = value;
+	mass.size = 10 * mass.objectMass;
+	document.getElementById("mass").innerHTML = `Mass: ${mass.objectMass} kg`;
+
 	// stroke(0);
 	// strokeWeight(0.5);
 	// textSize(15);
@@ -120,17 +125,6 @@ function draw() {
 		document.getElementById("Radius").innerHTML = `Ring's Radius: ${round(ring.radius, 2)}m`;
 		document.getElementById("angVel").innerHTML = `Angular Velocity: ${round(mass.angularVelocity * 60, 2)} rad/s`
 		document.getElementById("vel").innerHTML = `Velocity: ${round(mass.velocity * 60, 2)} m/s`
-		document.getElementById("mass").innerHTML = `Mass: ${mass.objectMass} kg`;
-
-		//text(`Ring Radius: ${ring.radius} meters`, centerX - ring.size, 75);
-		//text(`Angular Velocity: ${round(mass.angularVelocity * 60, 2)} radian(s) per second`, centerX - ring.size, 25);
-		//text(`Velocity: ${round(mass.velocity * 60, 2)} meter(s) per second`, centerX - ring.size, 50);
-		//text("Angular Velocity (rad/s):", centerX + 0.6 * ring.size, centerY - 0.26 * ring.size);
-		//text("Velocity (m/s):", centerX + 0.6 * ring.size, centerY - 0.12 * ring.size);
-		//text(`Mass: ${mass.objectMass} kg`, centerX + 0.6 * ring.size, centerY)
-		
-		
-
 
 		let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
 		document.getElementById("Centripetal").innerHTML = `Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`;
@@ -251,3 +245,5 @@ function updateObjectMass() {
 	mass.objectMass = value;
 	mass.size = 5 * mass.objectMass;
 }
+
+// oninput = "updateObjectMass()"

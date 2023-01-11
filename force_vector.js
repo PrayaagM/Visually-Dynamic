@@ -86,6 +86,9 @@ class NormalForce extends Force {
         while (this.dir >= TWO_PI) {
             this.dir -= TWO_PI;
         }
+        while (this.dir <= 0) {
+            this.dir += TWO_PI;
+        }
         
     }
 
