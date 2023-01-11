@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Visually Dynamic</title>
+		<script src="libraries/p5.js"></script>
+		<!-- <script src="libraries/p5.sound.js"></script> -->
+		<script src="sketch.js"></script>
+		<script src = "ring_object.js"></script>
+		<script src = "point_object.js"></script>
+		<script src = "force_vector.js"></script>
+
+		<script type = "application/javascript">
+			setTimeout(() => {
+				let title = document.getElementById("title");
+				title.parentNode.removeChild(title); 	
+			}, 7000);
+		</script>
+
+		<!-- <style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			canvas {
+				margin: auto;
+			}
+		</style> -->
+
+		<link rel="stylesheet" href="styles.css" />
+		<div class="title">
+			<h1 id = "title">
+				Visualizing the Forces on a Point Mass Travelling in Uniform Circular Motion
+			</h1>
+		</div>
+
+		<div class="playButton">
+			<button class = "PlayPauseButton"
+					onclick = "playPause()">
+				Pause
+			</button>
+		</div>
+
+
+
+
+		<div class="angVel">
+			<p id = "angVel">Angular Velocity (rad/s): </p>
+			<input id = "angVelInput" type = "text"></input>
+			<button id = "angVelBtn" onClick = "updateAngularVelocity()">Update</button>
+		</div>
+
+		<div class="vel">
+			<p id = "vel">Velocity (m/s): </p>
+			<input id = "velInput" type = "text"></input>
+			<button id = "velBtn" onClick = "updateVelocity()">Update</button>
+
+		</div>
+
+		<div class="mass">
+			<p id = "mass">Mass (kg): </p>
+			<input id = "massSlider" min = 1 max = 20 value = 10 type = "range" oninput = "updateObjectMass()"></input>
+		</div>
+
+		<div class = "Labels">
+			<p id = "Radius">Ring's Radius: </p>
+			<p id = "Weight">Weight: </p>
+			<p id = "Normal">Normal Force </p>
+			<p id = "Friction">Friction Force: </p>
+			<p id = "Centripetal">Centripetal Force (N): </p>
+			<p id = "angle">Angle Theta in rad: </p>
+			<p id = "minimumSpeed">Minimum Speed Required: </p>
+			<p id="maximumSpeed">Speed Capped at </p>
+		</div>
+
+	</head>
+
+	<body>
+
+	</body>
+</html>

@@ -1,0 +1,89 @@
+html {
+    overflow: hidden;
+}
+
+.radiusLabel {
+    display: inline-flex;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    margin-left: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+
+}
+
+.Labels {
+    display: inline-flexbox;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1%;
+}
+
+.angVel {
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.vel {
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+.mass {
+    display: inline-block;
+    margin-left: 2rem;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.playButton {
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2%;
+}
+
+body {
+    margin: 1rem;
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+}
+
+
+.title {
+    font-family: 'Trebuchet MS';
+    font: 40;
+    top: 10%;
+    right: 10%;
+    position: absolute;
+    width: 25%;
+    text-align: center;
+}
+
+#title {
+    animation: fadeBackground 7s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeBackground {
+    from {color: black; }
+    to {color: white; }
+};
+
