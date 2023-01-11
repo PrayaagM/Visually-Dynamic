@@ -1,3 +1,4 @@
+let canvas;
 let running = true;
 let ring;
 let mass;
@@ -29,7 +30,7 @@ let angVel = 1;
 
 // Maximum Speeds in rad/s and m/s.
 let maximumAngSpeed = 20;
-let maximumSpeed = 100;
+let maximumSpeed = 137.5;
 
 // Initial Mass in Kilograms
 let initialMass = 5;
@@ -39,13 +40,19 @@ let gravity;
 let normal;
 let friction;
 
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
+	
 	running = true;
 	centerX = windowWidth / 2;
 	centerY = windowHeight * 0.8 / 2;
 
 
-	createCanvas(windowWidth, windowHeight * 0.8);
+	canvas = createCanvas(windowWidth, windowHeight * 0.8);
+	canvas.style('z-index', 1); 
 	background('white');
 
 	ring = new Ring(centerX, centerY, ringSize);
@@ -132,12 +139,18 @@ function draw() {
 
 		let magnitudes;
 		if (showMagnitudes) {
-			magnitudes = [round(gravity.mag, 2), round(normal.mag, 2), round(friction.mag, 2)];
+			magnitudes = { 
+							"Weight" : [round(gravity.mag, 2), gravity.colour], 
+							"Normal" : [round(normal.mag, 2), normal.colour],
+							"Friction" : [round(friction.mag, 2), friction.colour]};
 		} else magnitudes = ["", "", ""];
 
-		document.getElementById("Weight").innerHTML = `Weight (N): ${magnitudes[0]}`;
-		document.getElementById("Normal").innerHTML = `Normal Force (N): ${magnitudes[1]}`;
-		document.getElementById("Friction").innerHTML = `Frictional Force (N): ${magnitudes[2]}`;
+		Object.keys(magnitudes).forEach((label) => {
+			let element = document.getElementById(label);
+			element.innerHTML = `${label} (N): ${magnitudes[label][0]}`;
+			element.style.color = magnitudes[label][1];
+			console.log(magnitudes[label][1]);
+		});
 
 		
 

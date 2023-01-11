@@ -64,6 +64,7 @@ body {
     position: absolute;
     display: inline-block;
     justify-content: center;
+
 }
 
 
@@ -79,7 +80,7 @@ body {
 
 
 #title {
-    animation: fadeBackground 7s;
+    animation: fadeBackground 9s;
     animation-fill-mode: forwards;
 }
 
