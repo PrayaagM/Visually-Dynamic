@@ -135,7 +135,7 @@ function draw() {
 
 		let centripetal_force = mass.objectMass * ((mass.velocity * 60) ** 2) / ring.radius;
 		document.getElementById("Centripetal").innerHTML = `Centripetal Force (mv^2/R): ${round(centripetal_force, 2)} N`;
-		document.getElementById("angle").innerHTML = `Angle Theta: ${round(normal.dir, 2)}`
+		document.getElementById("angle").innerHTML = `Angle Theta (rad): ${round(normal.dir, 2)}`
 
 		let magnitudes;
 		if (showMagnitudes) {
